@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/tarefas.css">
+    <title>Tarefas</title>
+</head>
+<body>
+    <div class="container">
+
+        <div class="entrada-lista">
+            <input type="text" id="txtNovaTarefa" placeholder="Adicione uma nova tarefa">
+            <button id="btnSalvar">Salvar</button>
+        </div>
+
+        <div class="exibir-lista">
+            <h1>Minhas Tarefas</h1>
+
+            <ul id="listaTarefas">                
+            </ul>
+        </div>
+        
+    </div>
+
+    <div id="janelaEditar">
+        <h2 id="idTarefaEdicao"></h2>
+        <hr>
+        <form action="">
+            <div class="frmLinha">
+                <label for="nome">Nome</label>
+                <input type="text" id="txtEditar">
+            </div>
+            <div class="btnJanela">
+                <button id="btnSalvarJanela">Salvar</button>
+                <button id="btnCancelarJanela">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div id="janelaFundo"></div>
+
+    <script src="js/tarefas.js"></script>
+</body>
+</html>
