@@ -73,19 +73,6 @@ function criarTagLI(tarefa) {
     return li;
 }
 
-// Função: Ação do Botão 'Excluir'.
-function excluir(idTarefa) {
-    // 1. Aviso de confirmação
-    let confirmacao = window.confirm('Tem certeza que deseja excluir?');
-    // 2. Ação Excluir
-    if (confirmacao) {
-        let li = document.getElementById(''+ idTarefa + '');
-        if (li) {
-            listaTarefas.removeChild(li);
-        }
-    }   
-}
-
 // Evento: Ação do 'Botão Salvar' na janela de Edição.
 btnSalvarJnl.addEventListener('click', (e) => {
 
@@ -107,19 +94,30 @@ btnSalvarJnl.addEventListener('click', (e) => {
     }
 });
 
-// Evento: Ação do 'Botão Cancelar' na janela de Edição.
+// Evento: Ação do 'Botão Cancelar' na janela de Edição.    (Voltar para corrigir)
 bntCancelar.addEventListener('click', (e) => {
-
     alternarJanelaEdicao();
 });
 
-// Função: Ação do Botão'Salvar' dentro da janela.
+// Função: Ação do Botão 'Excluir'.
+function excluir(idTarefa) {
+    // 1. Aviso de confirmação
+    let confirmacao = window.confirm('Tem certeza que deseja excluir?');
+    // 2. Ação Excluir
+    if (confirmacao) {
+        let li = document.getElementById(''+ idTarefa + '');
+        if (li) {
+            listaTarefas.removeChild(li);
+        }
+    }
+}
+
+// Função: Ação do Botão'Salvar' dentro da janela.  (Voltar para corrigir)
 function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
         if (li) {
             idTarefaEdicao.innerHTML = '#' + idTarefa;
-            //Captura texto da lista
-            //txtEditar.value = li.innerText;
+            txtEditar.value = li.innerText; // não consigo pegar apenas o texto do span
             alternarJanelaEdicao();
         }
 }
