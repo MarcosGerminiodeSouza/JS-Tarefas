@@ -49,30 +49,34 @@ function criarTagLI(tarefa) {
     // 1. TAG <li>
     let li = document.createElement('li');
     li.id = tarefa.id;
+
     // 2. TAG <span>
     let span = document.createElement('span');
     span.classList.add('txtTarefa');
     span.innerHTML = tarefa.nome;
+
     // 3. TAG <div>
-    let div = document.createElement('div');    
+    let div = document.createElement('div'); 
+       
     // 4. Botão Editar
     let btnEditar = document.createElement('button');
     btnEditar.classList.add('btnTarefa');
     btnEditar.innerHTML = 'Editar';
     btnEditar.setAttribute('onclick', 'editar('+tarefa.id+')');
+
     // 5. Botão Excluir
     let btnExcluir = document.createElement('button');
     btnExcluir.classList.add('btnTarefa');
     btnExcluir.innerHTML = 'Excluir';
     btnExcluir.setAttribute('onclick', 'excluir('+tarefa.id+')');
+
     // 6. Formar Tarefa
     div.appendChild(btnEditar);
     div.appendChild(btnExcluir);
     
     li.appendChild(span);
     li.appendChild(div);
-
-    return li;
+    return li;    
 }
 
 // Evento: Ação do 'Botão Salvar' na janela de Edição.
@@ -98,7 +102,7 @@ btnSalvarJnl.addEventListener('click', (e) => {
 
 // Evento: Ação do 'Botão Fechar' na janela de Edição.
 fecharJanela.addEventListener('click', (ex) => {
-    
+
     alternarJanelaEdicao();
 });
 
@@ -106,7 +110,9 @@ fecharJanela.addEventListener('click', (ex) => {
 function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
     if(li) {
+        alert('Tarefa:'+ li.innerText);
         idTarefaEdicao.innerHTML = '#' + idTarefa;
+        inputTxtEdicao.value = li.innerText; // input Janela
         alternarJanelaEdicao();
     } else {
         alert('Elemento HTML não encontrado!');
