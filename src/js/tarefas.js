@@ -1,16 +1,16 @@
-let txtNovaTarefa = document.querySelector('#txtNovaTarefa');
-let btnSalvar = document.querySelector('#btnSalvar');
-let listaTarefas = document.querySelector('#listaTarefas');
-let janelaEditar = document.querySelector('#janelaEditar');
-let janelaFundo = document.querySelector('#janelaFundo');
-let bntCancelarJanela = document.querySelector('#bntCancelarJanela');
-let btnSalvarJanela = document.querySelector('#btnSalvarJanela');
-let idTarefaEdicao = document.querySelector('#idTarefaEdicao');
-let txtEditar = document.querySelector('#txtEditar');
+let txtNovaTarefa = document.querySelector('#txtNovaTarefa');   // Input: Escreve Nova Tarefa
+let btnSalvar = document.querySelector('#btnSalvar');           // Botão Salvar: Cria Nova Tarefa.
+let listaTarefas = document.querySelector('#listaTarefas');     // ul: Local de Armazenamento de Tarefas.
+let idTarefaEdicao = document.querySelector('#idTarefaEdicao'); // h2: #Id Janela de Edição.
+let janelaFundo = document.querySelector('#janelaFundo');       // Div: Fundo da Janela de Edição.
+let janelaEdicao = document.querySelector('#janelaEdicao');     // Janela de Edição.
+let txtEditar = document.querySelector('#txtEditar');           // Input: Editar Tarefa.
+let btnSalvarJnl = document.querySelector('#btnSalvarJnl');     // Botão Salvar: Edição.
+let bntCancelar = document.querySelector('#bntCancelar');       // Botão Cancelar: Edição.
 
-// Enviar Tarefa ao HTML, com a tecla 'Enter'
-txtNovaTarefa.addEventListener('keypress', (e) => {
-    
+// Evento: Enviar Tarefa ao HTML com a 'Tecla Enter'.
+txtNovaTarefa.addEventListener('keypress', (e) => { 
+
     if(e.keyCode == 13) {
         let tarefa = {
             nome: txtNovaTarefa.value,
@@ -20,7 +20,7 @@ txtNovaTarefa.addEventListener('keypress', (e) => {
     }
 });
 
-// Enviar Tarefa ao HTML, com 'Botão Salvar'
+// Evento: Enviar Tarefa ao HTML com 'Botão Salvar'.
 btnSalvar.addEventListener('click', (e) => {
 
     let tarefa = {
@@ -30,8 +30,65 @@ btnSalvar.addEventListener('click', (e) => {
     adicionarTarefa(tarefa);
 });
 
-// Ação do 'Botão Salvar' na janela de Edição 
-btnSalvarJanela.addEventListener('click', (e) => {
+// Função: gerar #ID.
+function gerarId() {
+    return Math.floor(Math.random() * 40);
+}
+
+// Função: Adicionar tarefa ao HTML.
+function adicionarTarefa(tarefa) {
+    let li = criarTagLI(tarefa);
+    listaTarefas.appendChild(li);
+    txtNovaTarefa.value = '';
+}
+
+// Função: Criar TAG <li>.
+function criarTagLI(tarefa) {
+    // 1. TAG <li>
+    let li = document.createElement('li');
+    li.id = tarefa.id;
+    // 2. TAG <span>
+    let span = document.createElement('span');
+    span.classList.add('txtTarefa');
+    span.innerHTML = tarefa.nome;
+    // 3. TAG <div>
+    let div = document.createElement('div');    
+    // 4. Botão Editar
+    let btnEditar = document.createElement('button');
+    btnEditar.classList.add('btnTarefa');
+    btnEditar.innerHTML = 'Editar';
+    btnEditar.setAttribute('onclick', 'editar('+tarefa.id+')');
+    // 5. Botão Excluir
+    let btnExcluir = document.createElement('button');
+    btnExcluir.classList.add('btnTarefa');
+    btnExcluir.innerHTML = 'Excluir';
+    btnExcluir.setAttribute('onclick', 'excluir('+tarefa.id+')');
+    // 6. Formar Tarefa
+    div.appendChild(btnEditar);
+    div.appendChild(btnExcluir);
+    
+    li.appendChild(span);
+    li.appendChild(div);
+
+    return li;
+}
+
+// Função: Ação do Botão 'Excluir'.
+function excluir(idTarefa) {
+    // 1. Aviso de confirmação
+    let confirmacao = window.confirm('Tem certeza que deseja excluir?');
+    // 2. Ação Excluir
+    if (confirmacao) {
+        let li = document.getElementById(''+ idTarefa + '');
+        if (li) {
+            listaTarefas.removeChild(li);
+        }
+    }   
+}
+
+// Evento: Ação do 'Botão Salvar' na janela de Edição.
+btnSalvarJnl.addEventListener('click', (e) => {
+
     e.preventDefault();
 
     let idTarefa = idTarefaEdicao.innerHTML.replace('#', '');
@@ -46,96 +103,29 @@ btnSalvarJanela.addEventListener('click', (e) => {
     if (tarefaAtual) {
     let li = criarTagLI(tarefa);
     listaTarefas.replaceChild(li, tarefaAtual);
-    alternarJanelaEditar();
-    } else {
-        alert('Elemento HTML não encontrado!')
+    alternarJanelaEdicao();
     }
-
 });
 
-// Ação do 'Botão Cancelar' na janela de Edição: fechar a janela sem realizar alterações
-bntCancelarJanela.addEventListener('click', (e) => {
-    alternarJanelaEditar();
+// Evento: Ação do 'Botão Cancelar' na janela de Edição.
+bntCancelar.addEventListener('click', (e) => {
+
+    alternarJanelaEdicao();
 });
 
-// Função gerar #ID 
-function gerarId() {
-    return Math.floor(Math.random() * 40);
-}
-
-// Função Adicionar tarefa ao HTML
-function adicionarTarefa(tarefa) {
-    let li = criarTagLI(tarefa);
-    listaTarefas.appendChild(li);
-    txtNovaTarefa.value = '';
-}
-
-// Função Criar o objeto 'Tarefa' dentro da Lista
-function criarTagLI(tarefa) {
-    //Criando tag <li>, nosso objeto
-    let li = document.createElement('li');
-    li.id = tarefa.id;
-    //Criar <span>, onde vai o texto 
-    let span = document.createElement('span');
-    span.classList.add('txtTarefa');
-    span.innerHTML = tarefa.nome;
-    //Criar uma divisão <div>
-    let div = document.createElement('div');
-    
-    // Ação do 'Botão Editar'
-    let btnEditar = document.createElement('button');
-    btnEditar.classList.add('btnTarefa');
-    btnEditar.innerHTML = 'Editar';
-    btnEditar.setAttribute('onclick', 'editar('+tarefa.id+')');
-
-    //Ação do 'Botão Excluir'
-    let btnExcluir = document.createElement('button');
-    btnExcluir.classList.add('btnTarefa');
-    btnExcluir.innerHTML = 'Excluir';
-    btnExcluir.setAttribute('onclick', 'excluir('+tarefa.id+')');
-
-    //Adicionar os 'Botões' a <div>
-    div.appendChild(btnEditar);
-    div.appendChild(btnExcluir);
-    //Adicionar o 'texto' e 'div de Botões' à tarefa
-    li.appendChild(span);
-    li.appendChild(div);
-
-    return li;
-}
-
-// Função da Ação 'Editar' dentro da janela
+// Função: Ação do Botão'Salvar' dentro da janela.
 function editar(idTarefa) {
-
     let li = document.getElementById(''+ idTarefa + '');
         if (li) {
             idTarefaEdicao.innerHTML = '#' + idTarefa;
             //Captura texto da lista
-            txtEditar.value = li.innerText;
-            alternarJanelaEditar();
-        } else {
-            alert('Elemento HTML não encontrado!')
+            //txtEditar.value = li.innerText;
+            alternarJanelaEdicao();
         }
 }
 
-// Função Confirmar a Ação 'Excluir'
-function excluir(idTarefa) {
-    //Aviso de confirmação
-    let confirmacao = window.confirm('Tem certeza que deseja excluir?');
-
-    //Ação Excluir
-    if (confirmacao) {
-        let li = document.getElementById(''+ idTarefa + '');
-        if (li) {
-            listaTarefas.removeChild(li);
-        } else {
-            alert('Elemento HTML não encontrado!')
-        }
-    }   
-}
-
-// Função de abrir janela de Edição
-function alternarJanelaEditar() {
-    janelaEditar.classList.toggle('abrir');
+// Função: Abrir janela de Edição.
+function alternarJanelaEdicao() {
+    janelaEdicao.classList.toggle('abrir');
     janelaFundo.classList.toggle('abrir');
 }
