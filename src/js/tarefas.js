@@ -110,12 +110,9 @@ fecharJanela.addEventListener('click', (ex) => {
 function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
     if(li) {
-        alert('Tarefa:'+ li.innerText);
         idTarefaEdicao.innerHTML = '#' + idTarefa;
         inputTxtEdicao.value = li.innerText; // input Janela
         alternarJanelaEdicao();
-    } else {
-        alert('Elemento HTML não encontrado!');
     }
 }
 
