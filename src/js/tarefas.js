@@ -6,7 +6,9 @@ let janelaFundo = document.querySelector('#janelaFundo');       // Div: Fundo da
 let janelaEdicao = document.querySelector('#janelaEdicao');     // Janela de Edição.
 let inputTxtEdicao = document.querySelector('#inputTxtEdicao'); // Input: Editar Tarefa.
 let btnSalvarJnl = document.querySelector('#btnSalvarJnl');     // Botão Salvar: Edição.
-let bntCancelar = document.querySelector('#bntCancelar');       // Botão Cancelar: Edição.
+let fecharJanela = document.querySelector('#fecharJanela');     // Botão Cancelar: Edição. bntCancelar.
+//let bntCancelar = document.querySelector('#bntCancelar');
+
 
 // Evento: Enviar Tarefa ao HTML com a 'Tecla Enter'.
 txtNovaTarefa.addEventListener('keypress', (e) => { 
@@ -94,8 +96,9 @@ btnSalvarJnl.addEventListener('click', (e) => {
     }
 });
 
-// Evento: Ação do 'Botão Cancelar' na janela de Edição.
-bntCancelar.addEventListener('click', (e) => {
+// Evento: Ação do 'Botão Fechar' na janela de Edição.
+fecharJanela.addEventListener('click', (ex) => {
+    
     alternarJanelaEdicao();
 });
 

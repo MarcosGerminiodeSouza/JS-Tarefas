@@ -154,23 +154,39 @@ form {
 }
 /*Botões da Janela*/
 .frmLinha button {
+    margin-left: 80px;
     background: #2d2c2c;
     border: 1px solid #191818;
     padding: 7px;
-    margin-bottom: 5px;
-    margin-left: 80px;
     border-radius: 10px;
     color: #CCC;
     height: 40px;
     width: 100px;
     font-size: 1.2rem;
     cursor: pointer;
-    outline: none;    
+    outline: none;
 }
 
-#btnCancelar {
+#fecharJanela {
+    margin-left: 80px;
+    margin-top: 181px;
+    background: #2d2c2c;
+    border: 1px solid #191818;
+    padding: 7px;
+    border-radius: 10px;
+    color: #CCC;
+    height: 40px;
+    width: 100px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    outline: none;
     position: absolute;
     margin-left: 220px;
+}
+
+#fecharJanela:hover {
+    background: #505050;
+    color: #FFF;
 }
 
 .frmLinha button:hover {
