@@ -5,6 +5,12 @@ body {
     font-size: 1rem;
 }
 
+h1 {
+    color: #FFF;
+    margin-left: 10px;
+    font-size: 1.5rem;    
+}
+
 .container {
     margin: 0 auto;
     width: 100%;
@@ -16,13 +22,13 @@ body {
     border-radius: 10px;    
 }
 
-.entrada-lista {
+.entrada {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
-.entrada-lista input {
+.entrada input {
     width: 350px;
     padding: 15px;
     border-radius: 10px;
@@ -33,7 +39,7 @@ body {
     outline: none;
 }
 
-.entrada-lista button {
+.entrada button {
     width: 60px;
     border-radius: 10px;
     border: 1px solid #111111;
@@ -43,15 +49,10 @@ body {
     outline: none;
 }
 
-.entrada-lista button:hover {
+.entrada button:hover {
     background: #111111;
     color: #FFF;
     cursor: pointer;
-}
-
-.exibir-lista h1 {
-    color: #f1f1f1;
-    margin-left: 30px;
 }
 
 #listaTarefas {
@@ -60,18 +61,14 @@ body {
     margin: 0;
 }
 
-#listaTarefas h1 {
-    color: #CCC;
-}
-
 #listaTarefas li {
-    padding: 15px;
-    background: #191818;
+    padding: 10px;
+    margin-top: 10px;
     border-radius: 10px;
+    background: #191818;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px;
 }
 
 .btnTarefa {
@@ -90,11 +87,10 @@ body {
     background: #3c3a3a;
 }
 
-.textoTarefa {
+.txtTarefa {
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 290px;
-    white-space: nowrap;
+    width: 245px;
 }
 
 #janelaEdicao {
@@ -139,15 +135,7 @@ form {
 .frmLinha {
     display: flex;
     flex-direction: column;
-    margin-bottom: 20px;        
-}
-
-.btnJanela {
-    display: flex;
-    justify-content: space-between;
-    width: 220px;
-    height: 50px;
-    margin: auto;
+    margin-bottom: 10px;       
 }
 
 .frmLinha label {
@@ -164,21 +152,28 @@ form {
     background: #2d2c2c;
     color: #FFF;
 }
-
-.btnJanela button {
+/*Botões da Janela*/
+.frmLinha button {
     background: #2d2c2c;
     border: 1px solid #191818;
     padding: 7px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    margin-left: 80px;
     border-radius: 10px;
     color: #CCC;
-    height: 50px;
+    height: 40px;
     width: 100px;
     font-size: 1.2rem;
     cursor: pointer;
-    outline: none;
+    outline: none;    
 }
 
-.btnJanela button:hover {
+#btnCancelar {
+    position: absolute;
+    margin-left: 220px;
+}
+
+.frmLinha button:hover {
     background: #505050;
+    color: #FFF;
 }

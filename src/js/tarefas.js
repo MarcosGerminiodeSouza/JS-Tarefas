@@ -4,7 +4,7 @@ let listaTarefas = document.querySelector('#listaTarefas');     // ul: Local de 
 let idTarefaEdicao = document.querySelector('#idTarefaEdicao'); // h2: #Id Janela de Edição.
 let janelaFundo = document.querySelector('#janelaFundo');       // Div: Fundo da Janela de Edição.
 let janelaEdicao = document.querySelector('#janelaEdicao');     // Janela de Edição.
-let txtEditar = document.querySelector('#txtEditar');           // Input: Editar Tarefa.
+let inputTxtEdicao = document.querySelector('#inputTxtEdicao'); // Input: Editar Tarefa.
 let btnSalvarJnl = document.querySelector('#btnSalvarJnl');     // Botão Salvar: Edição.
 let bntCancelar = document.querySelector('#bntCancelar');       // Botão Cancelar: Edição.
 
@@ -81,7 +81,7 @@ btnSalvarJnl.addEventListener('click', (e) => {
     let idTarefa = idTarefaEdicao.innerHTML.replace('#', '');
 
     let tarefa = {
-        nome: txtEditar.value,
+        nome: inputTxtEdicao.value,
         id: idTarefa
     }
 
@@ -94,10 +94,21 @@ btnSalvarJnl.addEventListener('click', (e) => {
     }
 });
 
-// Evento: Ação do 'Botão Cancelar' na janela de Edição.    (Voltar para corrigir)
+// Evento: Ação do 'Botão Cancelar' na janela de Edição.
 bntCancelar.addEventListener('click', (e) => {
     alternarJanelaEdicao();
 });
+
+// Função: Ação do Botão'Salvar' dentro da janela.
+function editar(idTarefa) {
+    let li = document.getElementById(''+ idTarefa + '');
+    if(li) {
+        idTarefaEdicao.innerHTML = '#' + idTarefa;
+        alternarJanelaEdicao();
+    } else {
+        alert('Elemento HTML não encontrado!');
+    }
+}
 
 // Função: Ação do Botão 'Excluir'.
 function excluir(idTarefa) {
@@ -110,16 +121,6 @@ function excluir(idTarefa) {
             listaTarefas.removeChild(li);
         }
     }
-}
-
-// Função: Ação do Botão'Salvar' dentro da janela.  (Voltar para corrigir)
-function editar(idTarefa) {
-    let li = document.getElementById(''+ idTarefa + '');
-        if (li) {
-            idTarefaEdicao.innerHTML = '#' + idTarefa;
-            txtEditar.value = li.innerText; // não consigo pegar apenas o texto do span
-            alternarJanelaEdicao();
-        }
 }
 
 // Função: Abrir janela de Edição.
