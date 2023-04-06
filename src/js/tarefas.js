@@ -7,34 +7,40 @@ let janelaEdicao = document.querySelector('#janelaEdicao');     // Janela de Edi
 let inputTxtEdicao = document.querySelector('#inputTxtEdicao'); // Input: Editar Tarefa.
 let btnSalvarJnl = document.querySelector('#btnSalvarJnl');     // Botão Salvar: Edição.
 let fecharJanela = document.querySelector('#fecharJanela');     // Botão Cancelar: Edição. bntCancelar.
-//let bntCancelar = document.querySelector('#bntCancelar');
-
-
+//inputTxtEdicao.value = li.innerText; // input Janela
 // Evento: Enviar Tarefa ao HTML com a 'Tecla Enter'.
 txtNovaTarefa.addEventListener('keypress', (e) => { 
-
-    if(e.keyCode == 13) {
-        let tarefa = {
-            nome: txtNovaTarefa.value,
-            id: gerarId(),
+    let input = txtNovaTarefa;
+    if (e.keyCode == 13) {
+        if (!input.value){
+            alert('Digite Algo para inserir em sua lista...');
+        }else if (input.value){
+            let tarefa = {
+                nome: txtNovaTarefa.value,
+                id: gerarId(),
+            }
+            adicionarTarefa(tarefa);
         }
-        adicionarTarefa(tarefa);   
     }
 });
 
 // Evento: Enviar Tarefa ao HTML com 'Botão Salvar'.
 btnSalvar.addEventListener('click', (e) => {
-
-    let tarefa = {
-        nome: txtNovaTarefa.value,
-        id: gerarId(),
+    let input = txtNovaTarefa;
+    if (!input.value) {
+        alert('Digite Algo para inserir em sua lista...');
+    }else if (input.value){
+        let tarefa = {
+            nome: txtNovaTarefa.value,
+            id: gerarId(),
+        }
+        adicionarTarefa(tarefa);
     }
-    adicionarTarefa(tarefa);
 });
 
 // Função: gerar #ID.
 function gerarId() {
-    return Math.floor(Math.random() * 40);
+    return Math.floor(Math.random() * 200);
 }
 
 // Função: Adicionar tarefa ao HTML.
@@ -100,18 +106,19 @@ btnSalvarJnl.addEventListener('click', (e) => {
     }
 });
 
+
+
 // Evento: Ação do 'Botão Fechar' na janela de Edição.
 fecharJanela.addEventListener('click', (ex) => {
 
     alternarJanelaEdicao();
 });
 
-// Função: Ação do Botão'Salvar' dentro da janela.
+// Função: Ação do Botão'Salvar' dentro da janela.      (Voltar para criar texdo do input)
 function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
     if(li) {
         idTarefaEdicao.innerHTML = '#' + idTarefa;
-        inputTxtEdicao.value = li.innerText; // input Janela
         alternarJanelaEdicao();
     }
 }
