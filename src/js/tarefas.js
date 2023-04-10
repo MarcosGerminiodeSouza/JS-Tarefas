@@ -7,7 +7,7 @@ let janelaEdicao = document.querySelector('#janelaEdicao');     // Janela de Edi
 let inputTxtEdicao = document.querySelector('#inputTxtEdicao'); // Input: Editar Tarefa.
 let btnSalvarJnl = document.querySelector('#btnSalvarJnl');     // Botão Salvar: Edição.
 let fecharJanela = document.querySelector('#fecharJanela');     // Botão Cancelar: Edição. bntCancelar.
-//inputTxtEdicao.value = li.innerText; // input Janela
+
 // Evento: Enviar Tarefa ao HTML com a 'Tecla Enter'.
 txtNovaTarefa.addEventListener('keypress', (e) => { 
     let input = txtNovaTarefa;
@@ -99,16 +99,16 @@ btnSalvarJnl.addEventListener('click', (e) => {
 
     let tarefaAtual = document.getElementById(''+idTarefa+'');
 
-    if (tarefaAtual) {
+    if(!inputTxtEdicao.value){
+        alert('Digite Algo para inserir em sua lista...');
+    } else if (tarefaAtual) {
     let li = criarTagLI(tarefa);
     listaTarefas.replaceChild(li, tarefaAtual);
     alternarJanelaEdicao();
     }
 });
 
-
-
-// Evento: Ação do 'Botão Fechar' na janela de Edição.
+// Evento: Ação do 'Botão Cancelar' na janela de Edição.
 fecharJanela.addEventListener('click', (ex) => {
 
     alternarJanelaEdicao();
@@ -119,6 +119,9 @@ function editar(idTarefa) {
     let li = document.getElementById(''+ idTarefa + '');
     if(li) {
         idTarefaEdicao.innerHTML = '#' + idTarefa;
+        // input Janela
+        //inputTxtEdicao.value = li.innerText;
+        inputTxtEdicao.value = '';
         alternarJanelaEdicao();
     }
 }
