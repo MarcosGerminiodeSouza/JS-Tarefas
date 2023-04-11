@@ -120,7 +120,6 @@ function editar(idTarefa) {
     if(li) {
         idTarefaEdicao.innerHTML = '#' + idTarefa;
         // input Janela
-        //inputTxtEdicao.value = li.innerText;
         inputTxtEdicao.value = '';
         alternarJanelaEdicao();
     }
